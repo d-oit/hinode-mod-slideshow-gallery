@@ -1,0 +1,15 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Test site for mod-template'
+
+[module]
+  # Build and serve using local mod-template clone declared in the named Hugo workspace:
+  workspace = "mod-template.work"
+  [[module.imports]]
+    path = "github.com/gethinode/mod-template"
+  [[module.imports.mounts]]
+    source = "dist"
+    target = "static"
+  [[module.imports.mounts]]
+    source = "layouts"
+    target = "layouts"

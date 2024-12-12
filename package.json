@@ -1,0 +1,86 @@
+{
+  "name": "@gethinode/mod-template",
+  "version": "0.0.0",
+  "description": "A template to define a Hugo module compatible with Hinode",
+  "keywords": [
+    "hugo",
+    "module"
+  ],
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "prestart": "npm run clean && npm run mod:vendor",
+    "start": "hugo server -s exampleSite --bind=0.0.0.0 --disableFastRender --printI18nWarnings",
+    "prebuild": "npm run clean && npm run mod:vendor",
+    "build": "hugo --gc --minify -s exampleSite",
+    "clean": "rimraf exampleSite/public exampleSite/resources",
+    "mod:clean": "hugo mod clean",
+    "mod:update": "rimraf _vendor && hugo mod get -u ./... && hugo mod get -u && npm run -s mod:vendor && npm run -s mod:tidy",
+    "mod:tidy": "hugo mod tidy",
+    "mod:vendor": "rimraf _vendor && hugo mod vendor",
+    "postinstall": "echo TODO: add postinstall instructions",
+    "test": "npm run -s build",
+    "upgrade": "npx npm-check-updates -u && npm run -s mod:update",
+    "prepare": "node .husky/install.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gethinode/mod-template.git"
+  },
+  "author": "Mark Dumay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gethinode/hinode/issues"
+  },
+  "homepage": "https://gethinode.com",
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "commitizen": "^4.3.1",
+    "cpy-cli": "^5.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "hugo-bin": "^0.136.4",
+    "husky": "^9.1.7",
+    "rimraf": "^6.0.1",
+    "semantic-release": "^24.2.0"
+  },
+  "hugo-bin": {
+    "buildTags": "extended"
+  },
+  "release": {
+    "branches": "main",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/exec",
+        {
+          "prepare": "npm install"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist",
+            "package.json",
+            "package-lock.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
