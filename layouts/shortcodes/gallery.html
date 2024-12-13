@@ -1,0 +1,118 @@
+{{- $imagePath := .Get "imagePath" | default "submit" -}}
+{{- $useExifCaption := .Get "useExifCaption" | default false -}}
+{{- $useRandomImageStack := .Get "useRandomImageStack" | default true -}} <!-- Control randomization -->
+{{- $imageCssClass := .Get "imageCssClass" | default "lightbox size-medium" -}}
+{{- $ratio := .Get "ratio" | default "auto" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+{{- $searchclass := .Get "searchclass" | default "md" -}}
+{{- $showGalleryImageCaption := .Get "showGalleryImageCaption" | default false -}}
+{{- $showSearch := .Get "showSearch" | default false -}}
+{{- $galleryCssClass := .Get "galleryCssClass" | default "normal-gallery" -}}
+{{- $title := "" -}}
+{{- $caption := "" -}}
+
+<!-- Initialize $images to prevent the undefined variable error -->
+{{- $images := slice }}
+
+<!-- If imagePath is set to "submit", fetch the images from .Params.resources -->
+{{- if eq $imagePath "submit" }}
+    {{- $useExifCaption := false -}} 
+    {{- $images = .Page.Params.Resources -}} <!-- Fetch the resources defined in the frontmatter -->
+{{- else }}
+    {{- $images = resources.Match (printf "%s/*" $imagePath) -}} <!-- If not "submit", fall back to matching path -->
+{{- end }}
+
+{{- if $useRandomImageStack -}}
+    {{- $images = shuffle $images -}} <!-- Shuffle images if randomization is true -->
+    {{- $galleryCssClass = "collage-gallery" -}}
+{{- end -}}
+
+{{- if $showSearch -}}
+    {{ partial "assets/gallery-search-input.html" (dict "searchclass" (printf "mt-4 mt-%s-0" $searchclass)) }}
+{{- end -}}
+
+<!-- Gallery Wrapper -->
+<div class="gallery {{ $galleryCssClass }}">
+    {{- range $index, $image := $images }}
+        {{- $imageUrl := .RelPermalink }} <!-- Default to 3 columns -->
+        {{- $description := "" -}}
+        {{- $randomClass := "" -}}
+        {{- if eq $imagePath "submit" }}
+            {{- with resources.Get $image.src }}
+                {{ $imageUrl = .RelPermalink }}
+                {{ $title = $image.title }}
+                {{ $description = $image.params.description }}
+                {{ $randomClass = $image.params.cssClass }}
+            {{- end }}
+        {{- end }}  
+        <!-- Randomized class for stacking -->
+        {{- if $useRandomImageStack }}
+            {{- $sizes := slice "size-small" "size-medium" "size-large" }}
+            {{- $randomClass = index $sizes (mod $index 3) -}}
+        {{- end }}
+
+        {{- $dataAttributes := "" -}}
+        {{- if ne $title "" -}}
+            {{- $dataAttributes = printf "%s data-image-title=%q" $dataAttributes $title -}}
+        {{- end -}}
+        {{- $CaptionValue := $description -}}
+
+        <!-- Extract EXIF title if useExifCaption is true -->
+        {{- $exifValue := "" -}}
+        {{- if and $useExifCaption (resources.Get $image.RelPermalink) }}
+            {{- with (resources.Get $image.Name).Exif.Tags.ImageDescription -}}
+                {{- $exifValue = .  -}}
+                {{- if ne $exifValue "" -}}
+                    {{- $CaptionValue = $exifValue -}}
+                {{- end -}}   
+            {{- end -}}
+
+            {{- with (resources.Get $image.Name).Exif.Tags.XPKeywords -}}
+                {{- $keywords := .  -}}
+                {{- if ne $keywords "" -}}
+                    {{- $dataAttributes = printf "%s data-image-tags=%q" $dataAttributes $keywords  -}}
+                {{- end }}
+            {{- end -}}
+
+            {{- with (resources.Get $image.Name).Exif.Tags.XPSubject -}}  
+                {{- $subject := . -}}
+                {{- if ne $subject "" -}}
+                    {{- $dataAttributes = printf "%s data-image-subject=%q" $dataAttributes $subject  -}}
+                {{- end }}
+            {{- end -}}
+
+            {{- with (resources.Get $image.Name).Exif.Tags.XPComment -}}  
+                {{- $XPComment := . -}}
+                {{- if ne $XPComment "" -}}
+                    {{- $dataAttributes = printf "%s data-image-description=%q" $dataAttributes $XPComment   -}}
+                {{- end }}
+            {{- end -}}
+        {{- end -}}
+
+        {{- if ne $exifValue "" -}}
+            {{- $dataAttributes = printf "%s data-image-title=%q" $dataAttributes $CaptionValue -}}
+        {{- end -}} 
+
+        {{- $dataAttributes = printf "%s data-image-permalink=%q" $dataAttributes $imageUrl -}}
+        {{- if ne $description "" -}}
+            {{- $dataAttributes = printf "%s data-image-description=%q" $dataAttributes $description -}}
+        {{- end -}} 
+
+        {{ if ne $description "" }}
+            {{- $title = printf "%s\n%q" $title $description -}}
+        {{ end }}
+
+        <!-- Single Image Item -->
+        <div id="{{ $imageUrl }}" class="gallery-item {{ $randomClass }}" {{ $dataAttributes | safeHTMLAttr }}>
+            {{ partial "assets/image.html" (dict 
+                "url" $imageUrl
+                "ratio" $ratio 
+                "page" $.Page 
+                "class" $imageCssClass 
+                "loading" $loading 
+                "title" $title 
+                "caption" $caption
+            ) }}
+        </div>
+        {{- end }}
+</div>

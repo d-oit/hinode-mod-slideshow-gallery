@@ -1,0 +1,17 @@
+<!-- 
+    Add a form input element that provides input to the Gallery Search. It is typically embedded in a navigation control. Only
+    one control is supported per page. The shortcode supports the following arguments:
+
+    "searchclass"         Optional css class argument of the search input container.
+-->
+
+{{- $searchclass := .searchclass -}}
+
+<div class="d-flex gallery-search-container justify-content-end">
+    <div class="d-flex ms-md-3{{ with $searchclass }} {{ . }}{{ end }}">
+    <form class="search flex-fill position-relative me-auto">
+        <input id="gallery-search-input" class="gallery-search-input form-control" type="search" placeholder="{{ T "SearchImages" }}" aria-label="{{ T "SearchImages" }}" autocomplete="off" name="gallery-search-input">
+        <div id="gallery-search-suggestions-id" class="gallery-search-suggestions shadow bg-body rounded" data-no-results="{{ T "ui_no_results" }}"></div>
+    </form>
+    </div>
+</div>

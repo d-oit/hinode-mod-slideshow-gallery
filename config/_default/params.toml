@@ -1,0 +1,11 @@
+[lightbox]
+    enableZoom = true
+    enableRotate = false 
+    showImageAmount = true
+
+[modules]
+    [modules.image-lightbox-gallery]
+        integration = "critical"
+        state = "async"
+        localize = true
+        

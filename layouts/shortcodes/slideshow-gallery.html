@@ -1,0 +1,70 @@
+{{- $images := .Page.Params.Resources -}}
+{{- $currentImageIndex := 0 -}}
+
+<div class="slideshow-gallery">
+  <div class="lightbox-viewport">
+    <div class="lightbox-container">
+      {{- range $index, $image := $images }}
+        <img src="{{ $image.RelPermalink }}" alt="{{ $image.Title }}" class="lightbox-image{{ if eq $index $currentImageIndex }} active{{ end }} lightbox" data-index="{{ $index }}">
+      {{- end }}
+    </div>
+  </div>
+  <div class="slideshow-thumbnails">
+    {{- range $index, $image := $images }}
+      <img src="{{ $image.RelPermalink }}" alt="{{ $image.Title }}" class="slideshow-thumbnail{{ if eq $index $currentImageIndex }} active{{ end }}" data-index="{{ $index }}">
+    {{- end }}
+  </div>
+</div>
+
+<script>
+  const slideshowGallery = document.querySelector('.slideshow-gallery');
+  const lightboxImages = slideshowGallery.querySelectorAll('.lightbox-image');
+  const thumbnails = slideshowGallery.querySelectorAll('.slideshow-thumbnail');
+  const prevButton = slideshowGallery.querySelector('.lightbox-prev');
+  const nextButton = slideshowGallery.querySelector('.lightbox-next');
+  const currentIndexSpan = slideshowGallery.querySelector('.lightbox-current-index');
+  const titleSpan = slideshowGallery.querySelector('.lightbox-title');
+
+  let currentImageIndex = 0;
+
+  function updateLightbox() {
+    lightboxImages.forEach((image, index) => {
+      if (index === currentImageIndex) {
+        image.classList.add('active');
+      } else {
+        image.classList.remove('active');
+      }
+    });
+
+    thumbnails.forEach((thumbnail, index) => {
+      if (index === currentImageIndex) {
+        thumbnail.classList.add('active');
+      } else {
+        thumbnail.classList.remove('active');
+      }
+    });
+
+    currentIndexSpan.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
+    titleSpan.textContent = lightboxImages[currentImageIndex].alt;
+  }
+
+
+  prevButton.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
+    updateLightbox();
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
+    updateLightbox();
+  });
+
+  thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', () => {
+      currentImageIndex = index;
+      updateLightbox();
+    });
+  });
+
+  updateLightbox();
+</script>

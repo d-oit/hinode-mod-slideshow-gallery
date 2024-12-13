@@ -1,5 +1,5 @@
 {
-  "name": "@gethinode/mod-template",
+  "name": "@d-oit/mod-image-lightbox-gallery",
   "version": "0.0.0",
   "description": "A template to define a Hugo module compatible with Hinode",
   "keywords": [
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gethinode/mod-template.git"
+    "url": "git+https://github.com/d-oit/mod-image-lightbox-gallery.git"
   },
   "author": "Mark Dumay",
   "license": "MIT",

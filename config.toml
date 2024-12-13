@@ -10,5 +10,11 @@
     source = 'assets'
     target = 'assets'
   [[module.mounts]]
-    source = 'static'
-    target = 'static'
+    source = 'i18n'
+    target = 'i18n'
+  [[module.mounts]]
+    source = 'data'
+    target = 'data' 
+  [[module.imports]]
+    path = "github.com/gethinode/mod-utils/v2"  
+    
