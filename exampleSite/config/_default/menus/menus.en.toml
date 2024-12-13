@@ -4,6 +4,11 @@
   weight = 10
 
 [[main]]
+  name = "Gallery"
+  pageRef = "/Gallery"
+  weight = 14
+
+[[main]]
   name = "Tags"
   pageRef = "/tags"
   weight = 20

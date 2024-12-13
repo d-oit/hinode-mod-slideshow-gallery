@@ -1,0 +1,86 @@
+/* Position the image container (needed to position the left and right arrows) */
+.slideshow-gallery {
+  position: relative;
+}
+
+/* Hide the images by default */
+.slideshow-lightbox-container > div {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.slideshow-thumbnail {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.lightbox-prev,
+.lightbox-next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.lightbox-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.image-gallery-item {
+  display: none;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.lightbox-current-index {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.lightbox-title {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.slgrow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.slgcolumn {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumbnail images */
+.slideshow-thumbnail {
+  opacity: 0.6;
+}
+
+.active,
+.slideshow-thumbnail:hover {
+  opacity: 1;
+}

@@ -1,7 +1,7 @@
 ---
 author: d.o.it
 title: Gallery
-nested: false
+nested: true
 type: minimal
 ---
 

@@ -1,70 +1,50 @@
+{{- $ratio := .Get "ratio" | default "auto" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+
+<!-- Initialize $images to prevent the undefined variable error -->
 {{- $images := .Page.Params.Resources -}}
+
 {{- $currentImageIndex := 0 -}}
 
 <div class="slideshow-gallery">
   <div class="lightbox-viewport">
-    <div class="lightbox-container">
-      {{- range $index, $image := $images }}
-        <img src="{{ $image.RelPermalink }}" alt="{{ $image.Title }}" class="lightbox-image{{ if eq $index $currentImageIndex }} active{{ end }} lightbox" data-index="{{ $index }}">
-      {{- end }}
+    <div class="slideshow-lightbox-container">
+      {{- range $index, $image := $images -}}
+        {{- with resources.Get $image.src -}}
+          {{ $imageUrl := .RelPermalink }}
+          {{ $title := $image.title }}
+          {{ $description := $image.params.description }}
+          {{ $imageClass := $image.params.cssClass }}
+          <div class="slideshow-image-gallery-item">
+            {{ partial "assets/image.html" (dict "url" $imageUrl "ratio" $ratio "page" $.Page "class" $imageClass "loading" $loading "title" $title) }}
+          </div>
+        {{- end -}}
+      {{- end -}}
     </div>
+    <!-- Add navigation buttons -->
+    <button class="slgprev w3-text-white">❮</button>
+    <button class="slgnext w3-text-white">❯</button>
+    <!-- Add current index and title span -->
+    <span class="lightbox-current-index"></span>
+
   </div>
-  <div class="slideshow-thumbnails">
-    {{- range $index, $image := $images }}
-      <img src="{{ $image.RelPermalink }}" alt="{{ $image.Title }}" class="slideshow-thumbnail{{ if eq $index $currentImageIndex }} active{{ end }}" data-index="{{ $index }}">
-    {{- end }}
+
+  <div class="slgcaption-container">
+    <span class="lightbox-title"></span>
+  </div>
+
+  <!-- Thumbnail images -->
+  <div class="slgrow">
+    {{- range $index, $image := $images -}}
+      {{- with resources.Get $image.src -}}
+        {{ $imageUrl := .RelPermalink }}
+        {{ $title := $image.title }}
+        {{ $description := $image.params.description }}
+        {{ $imageClass := $image.params.cssClass }}
+        <div class="slgcolumn">
+          <img src="{{ $imageUrl }}" class="slgdemo cursor" alt="{{ $title }}">
+        </div>
+      {{- end -}}
+    {{- end -}}
   </div>
 </div>
-
-<script>
-  const slideshowGallery = document.querySelector('.slideshow-gallery');
-  const lightboxImages = slideshowGallery.querySelectorAll('.lightbox-image');
-  const thumbnails = slideshowGallery.querySelectorAll('.slideshow-thumbnail');
-  const prevButton = slideshowGallery.querySelector('.lightbox-prev');
-  const nextButton = slideshowGallery.querySelector('.lightbox-next');
-  const currentIndexSpan = slideshowGallery.querySelector('.lightbox-current-index');
-  const titleSpan = slideshowGallery.querySelector('.lightbox-title');
-
-  let currentImageIndex = 0;
-
-  function updateLightbox() {
-    lightboxImages.forEach((image, index) => {
-      if (index === currentImageIndex) {
-        image.classList.add('active');
-      } else {
-        image.classList.remove('active');
-      }
-    });
-
-    thumbnails.forEach((thumbnail, index) => {
-      if (index === currentImageIndex) {
-        thumbnail.classList.add('active');
-      } else {
-        thumbnail.classList.remove('active');
-      }
-    });
-
-    currentIndexSpan.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
-    titleSpan.textContent = lightboxImages[currentImageIndex].alt;
-  }
-
-
-  prevButton.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
-    updateLightbox();
-  });
-
-  nextButton.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
-    updateLightbox();
-  });
-
-  thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener('click', () => {
-      currentImageIndex = index;
-      updateLightbox();
-    });
-  });
-
-  updateLightbox();
-</script>

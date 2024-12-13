@@ -1,6 +1,8 @@
 ---
 title: "Gallery Stack Resources Sample"
 slug: "gallery-stack-res-img-sample"
+thumbnail:
+    url: /img/bird.jpg
 resources:
   - src: "img/bird.jpg"
     title: "Example caption 1"

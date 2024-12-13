@@ -72,6 +72,7 @@
   height: 100%;
   touch-action: none;
   user-select: none;
+  -webkit-user-select: none; /* Added for Safari compatibility */
   -webkit-tap-highlight-color: transparent;
   background: linear-gradient(rgba(30, 30, 30, 0.9), #000 1810%);
 }
@@ -95,6 +96,7 @@
   height: 50px;
   touch-action: none;
   user-select: none;
+  -webkit-user-select: none; /* Added for Safari compatibility */
   -webkit-tap-highlight-color: transparent;
   transition: opacity 0.3s;
   font-size: 28px;
@@ -245,4 +247,130 @@
   padding: 5px 10px;
   border-radius: 3px;
   font-size: 14px;
+}
+
+
+// slideshow galley
+
+/* Position the image container (needed to position the left and right arrows) */
+.slideshow-gallery {
+  position: relative;
+ 
+}
+
+.lightbox-viewport {
+  height: 100vh; /* Full viewport height */
+}
+
+.slideshow-lightbox-container {
+  position: relative; /* Needed to position the image and buttons */
+}
+
+.slideshow-image-gallery-item {
+  max-width: 2000px; /* Set a maximum width for the image */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.slideshow-image-gallery-item img {
+  width: 100%; /* Make the image responsive */
+  height: auto;
+  display: none;
+
+
+}
+
+.slideshow-image-gallery-item img.active {
+  display: block; /* Show the active image */
+}
+
+.slgcaption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+  max-width: 1000px;
+  min-width: 250px;
+  position: relative;
+  margin: 20px auto 0; /* Add top margin and center horizontally */
+}
+
+.slgnext {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.slgprev, .slgnext {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px; /* Adjust vertical position */
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none; /* Added for Safari compatibility */
+  background-color: rgba(0, 0, 0, 0.5); /* Add background color */
+  z-index: 1; /* Ensure buttons are on top */
+}
+.w3-text-white, .w3-hover-text-white:hover {
+  color: #fff !important;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.slideshow-thumbnail {
+  cursor: pointer;
+}
+
+.slgrow {
+  max-width: 1000px; /* Set a maximum width for the thumbnails */
+  margin: 0 auto; /* Center the thumbnails horizontally */
+}
+
+.slgrow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.slgcolumn {
+  float: left;
+  width: 16.66%;
+  padding-bottom: 16.66%; /* Maintain aspect ratio */
+  position: relative; /* For absolutely positioned content */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.slgcolumn img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire container */
+}
+
+/* Add a transparency effect for thumbnail images */
+.slgdemo {
+  opacity: 0.6;
+  transition: opacity 0.3s; /* Add smooth transition */
+}
+
+.active,
+.slgdemo:hover {
+  opacity: 1;
+}
+
+.lightbox-current-index {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 10px; /* Position at the top */
+  left: 10px; /* Position at the left */
+  background-color: rgba(0, 0, 0, 0.5); /* Add background color */
+  z-index: 1; /* Ensure it's on top */
 }

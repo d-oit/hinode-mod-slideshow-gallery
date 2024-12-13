@@ -16,11 +16,13 @@
 
 <!-- If imagePath is set to "submit", fetch the images from .Params.resources -->
 {{- if eq $imagePath "submit" }}
-    {{- $useExifCaption := false -}} 
+    {{- $useExifCaption := false -}}
     {{- $images = .Page.Params.Resources -}} <!-- Fetch the resources defined in the frontmatter -->
 {{- else }}
     {{- $images = resources.Match (printf "%s/*" $imagePath) -}} <!-- If not "submit", fall back to matching path -->
+    {{- $images = where $images "MediaType.MainType" "image" -}}
 {{- end }}
+
 
 {{- if $useRandomImageStack -}}
     {{- $images = shuffle $images -}} <!-- Shuffle images if randomization is true -->
@@ -44,7 +46,7 @@
                 {{ $description = $image.params.description }}
                 {{ $randomClass = $image.params.cssClass }}
             {{- end }}
-        {{- end }}  
+        {{- end }}
         <!-- Randomized class for stacking -->
         {{- if $useRandomImageStack }}
             {{- $sizes := slice "size-small" "size-medium" "size-large" }}
@@ -64,7 +66,7 @@
                 {{- $exifValue = .  -}}
                 {{- if ne $exifValue "" -}}
                     {{- $CaptionValue = $exifValue -}}
-                {{- end -}}   
+                {{- end -}}
             {{- end -}}
 
             {{- with (resources.Get $image.Name).Exif.Tags.XPKeywords -}}
@@ -74,14 +76,14 @@
                 {{- end }}
             {{- end -}}
 
-            {{- with (resources.Get $image.Name).Exif.Tags.XPSubject -}}  
+            {{- with (resources.Get $image.Name).Exif.Tags.XPSubject -}}
                 {{- $subject := . -}}
                 {{- if ne $subject "" -}}
                     {{- $dataAttributes = printf "%s data-image-subject=%q" $dataAttributes $subject  -}}
                 {{- end }}
             {{- end -}}
 
-            {{- with (resources.Get $image.Name).Exif.Tags.XPComment -}}  
+            {{- with (resources.Get $image.Name).Exif.Tags.XPComment -}}
                 {{- $XPComment := . -}}
                 {{- if ne $XPComment "" -}}
                     {{- $dataAttributes = printf "%s data-image-description=%q" $dataAttributes $XPComment   -}}
@@ -91,12 +93,12 @@
 
         {{- if ne $exifValue "" -}}
             {{- $dataAttributes = printf "%s data-image-title=%q" $dataAttributes $CaptionValue -}}
-        {{- end -}} 
+        {{- end -}}
 
         {{- $dataAttributes = printf "%s data-image-permalink=%q" $dataAttributes $imageUrl -}}
         {{- if ne $description "" -}}
             {{- $dataAttributes = printf "%s data-image-description=%q" $dataAttributes $description -}}
-        {{- end -}} 
+        {{- end -}}
 
         {{ if ne $description "" }}
             {{- $title = printf "%s\n%q" $title $description -}}
@@ -104,15 +106,15 @@
 
         <!-- Single Image Item -->
         <div id="{{ $imageUrl }}" class="gallery-item {{ $randomClass }}" {{ $dataAttributes | safeHTMLAttr }}>
-            {{ partial "assets/image.html" (dict 
+            {{ partial "assets/image.html" (dict
                 "url" $imageUrl
-                "ratio" $ratio 
-                "page" $.Page 
-                "class" $imageCssClass 
-                "loading" $loading 
-                "title" $title 
+                "ratio" $ratio
+                "page" $.Page
+                "class" $imageCssClass
+                "loading" $loading
+                "title" $title
                 "caption" $caption
             ) }}
         </div>
-        {{- end }}
+    {{- end }}
 </div>

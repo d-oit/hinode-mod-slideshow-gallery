@@ -1,10 +1,10 @@
 ---
 type: minimal
-title: "Gallery Stack Resources Sample1"
+title: "Slideshow Gallery Resources Sample1"
 thumbnail:
     url: /img/bird.jpg
     
-slug: "gallery-stack-res-img-sample1"
+slug: "slideshow-gallery-res-img-sample1"
 resources:
   - src: "img/bird.jpg"
     title: "Example caption 1"
@@ -19,9 +19,8 @@ resources:
     title: "Example caption 3"
     params:
       description: "Description for boots image"    
-
 ---
 
-## Gallery - Stack image resource Sample
+## Gallery - Slideshow gallery resource Sample
 
-{{< gallery useRandomImageStack=false >}}
+{{< slideshow-gallery >}}
