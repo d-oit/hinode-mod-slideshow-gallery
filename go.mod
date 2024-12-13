@@ -1,4 +1,4 @@
-module github.com/d-oit/mod-image-lightbox-gallery
+module github.com/d-oit/hinode-mod-image-lightbox-gallery
 
 go 1.19
 
