@@ -3,6 +3,7 @@
 {{- $enableRotate := .Site.Params.lightbox.enableRotate -}}
 {{- $disableSliderButtons := .Site.Params.lightbox.disableSliderButtons -}}
 {{- $showImageAmount := .Site.Params.lightbox.showImageAmount -}}
+{{- $showImageCaption := default true (.Page.Params.lightbox.showImageCaption | default .Site.Params.lightbox.showImageCaption) -}}
 {{- $showCloseButton := .Page.Params.lightbox.showCloseButton | default true -}}
 /* eslint-enable */
 
@@ -190,6 +191,9 @@
 
   // Create image title
   const createImageTitle = (lightboxImage) => {
+    {{ if eq $showImageCaption false }}
+      return
+    {{ end}}  
     const title = lightboxImage.getAttribute('alt');
   
     if (!title) return null;
