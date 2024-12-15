@@ -1,10 +1,9 @@
 ---
-type: minimal
+type: slideshow
 title: "Slideshow Gallery Resources Sample1"
-modules: ["gallery-slideshow"]
-test1: true
+modules: ["image-lightbox-gallery"]
 thumbnail:
-    url: /img/bird.jpg
+  url: /img/bird.jpg
     
 slug: "slideshow-gallery-res-img-sample1"
 resources:

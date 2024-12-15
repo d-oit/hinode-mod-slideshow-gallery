@@ -1,3 +1,5 @@
+showSlideshowGallery = false
+
 [lightbox]
     enableZoom = true
     enableRotate = false 

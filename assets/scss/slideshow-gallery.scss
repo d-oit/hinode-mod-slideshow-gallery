@@ -1,285 +1,182 @@
 /* Slideshow Gallery Styles */
 
-/* Container for image captions */
+/* Normal view - Constrain height within page context */
+.slideshow-gallery {
+  position: relative;
+  width: 100%;
+  // height: 500px; /* Reasonable default height */
+  height: 100vh; /* Maximum height of viewport */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Lightbox Viewport */
+.lightbox-viewport {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.slideshow-gallery .lightbox-title {
+  position: initial !important;
+}
+
+/* Current Index Positioning */
+.lightbox-current-index {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  z-index: 10;
+  border-radius: 3px;
+}
+
+/* Slideshow Lightbox Container */
+.slideshow-lightbox-container {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Image Gallery Item */
+.slideshow-image-gallery-item {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow-image-gallery-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: none;
+}
+
+.slideshow-image-gallery-item img.active {
+  display: block;
+}
+
+/* Caption Container - Now between image and thumbnails */
 .slgcaption-container {
+  width: 100%;
+  background-color: #222;
+  color: #ddd;
+  text-align: center;
   padding: 10px;
   font: 14px/1.5 sans-serif;
-  color: #ddd;
-  background-color: #222;
-  text-align: center;
-  max-width: 1000px;
-  min-width: 250px;
-  position: relative;
-  margin: 20px auto 0; /* Add top margin and center horizontally */
 }
 
 .slgcaption-container .lightbox-title {
   color: #fff;
 }
 
-/* Thumbnail column styles */
+/* Thumbnail Row */
+.slgrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  // max-height: 20%;
+  // overflow-x: auto;
+  background-color: #222;
+  // padding: 10px;
+}
+
 .slgcolumn {
-  float: left;
-  width: 16.66%;
-  padding-bottom: 16.66%; /* Maintain aspect ratio */
-  position: relative; /* For absolutely positioned content */
-  overflow: hidden; /* Hide overflowing content */
+  flex: 0 0 16.66%;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .slgcolumn img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Cover the entire container */
-  opacity: 0.8;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  cursor: pointer;
 }
 
+.slgcolumn img.active,
 .slgcolumn img:hover {
   opacity: 1;
 }
 
-/* Clearfix for thumbnail row */
-.slgrow:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Thumbnail image styles */
-.slgdemo {
-  opacity: 0.6;
-  transition: opacity 0.3s; /* Add smooth transition */
-}
-
-.slgdemo.active,
-.slgdemo:hover {
-  opacity: 1;
-}
-
-/* Main slideshow gallery container */
-.slideshow-gallery {
-  position: relative;
-  width: 100%;
-  margin: auto;
-}
-
-/* Hide all images by default */
-
-/* Show the active image */
-.slideshow-gallery .slideshow-image-gallery-item .img.active {
-  display: block;
-}
-
-/* Container for the lightbox image */
-.slideshow-gallery .slideshow-lightbox-container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Navigation button styles (previous, next, fullscreen) */
-.slideshow-gallery .slgprev,
-.slideshow-gallery .slgnext,
-.slideshow-gallery .slgfullscreen {
-  cursor: pointer;
-  position: absolute;
-  width: auto;
-  color: white;
-  font-size: 26px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-  background-color: rgba(0, 0, 0, 0.5); /* Add background color */
-  z-index: 1; /* Ensure buttons are on top */
-}
-
-.slideshow-gallery .slgprev {
-  left: 0;
-}
-
-.slideshow-gallery .slgnext {
-  right: 0;
-}
-
-.slideshow-gallery .slgprev,
-.slideshow-gallery .slgnext {
-  border-radius: 3px 0 0 3px;
-  top: 40%;
-}
-
-.slideshow-gallery .slgprev:hover,
-.slideshow-gallery .slgnext:hover,
-.slideshow-gallery .slgfullscreen:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Current index display */
-.slideshow-gallery .lightbox-current-index {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: white;
-  font-size: 14px;
-  background-color: rgba(0, 0, 0, 0.5); /* Add background color */
-  z-index: 1; /* Ensure it's on top */
-  padding: 8px 12px;
-}
-
-/* Fullscreen styles */
+/* Fullscreen Mode */
 .slideshow-gallery.fullscreen {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 2000; /* Increased z-index */
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
   background-color: black;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden; /* Hide any overflow */
 }
 
-.slideshow-gallery.fullscreen .slgprev,
-.slideshow-gallery.fullscreen .slgnext {
-  margin-top: -25px; /* Adjust based on button height */
-}
-
-.slideshow-gallery.fullscreen .slgprev {
+.slideshow-gallery.fullscreen .lightbox-current-index {
+  top: 15px;
   left: 15px;
-}
-
-.slideshow-gallery.fullscreen .slgnext {
-  right: 15px;
-}
-
-.slideshow-gallery.fullscreen .slgfullscreen {
-  right: 15px; /* Adjust position to accommodate close button */
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .slideshow-gallery.fullscreen .lightbox-viewport {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  flex-grow: 1;
+  min-height: 0; /* Allow shrinking */
 }
 
 .slideshow-gallery.fullscreen .slideshow-lightbox-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-.slideshow-gallery.fullscreen .slideshow-image-gallery-item img {
-  // max-height: 100%;
-  // max-width: 100%;
-  // object-fit: contain;
-}
-
-.slideshow-gallery.fullscreen .slgcaption-container {
-  width: 100%;
-  max-height: 20%; /* Adjust as needed */
-  overflow-y: auto;
-  background-color: #222;
-  color: #ddd;
-
-  font: 14px/1.5 sans-serif;
-  display: flex !important; /* Ensure caption is visible */
-}
-
+.slideshow-gallery.fullscreen .slgcaption-container,
 .slideshow-gallery.fullscreen .slgrow {
-  display: flex !important; /* Show thumbnails in fullscreen */
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-height: 20%; /* Adjust as needed */
-  overflow-x: auto;
-  background-color: #222;
-  color: #ddd;
-  padding: 10px;
-  font: 14px/1.5 sans-serif;
-  overflow: auto; /* Ensure thumbnails are scrollable */
+  // max-height: 20%;
+  // overflow: auto;
 }
 
-/* Fullscreen button style */
-button.slgfullscreen {
-  right: 0;
-  cursor: pointer;
+/* Navigation Buttons */
+.slgprev, .slgnext, .slgfullscreen {
   position: absolute;
-  top: 0;
-  width: auto;
-  color: white;
-  font-size: 20px;
-  border-radius: 3px;
-  user-select: none;
-  -webkit-user-select: none;
+  top: 50%;
+  transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-/* Position the image container (needed to position the left and right arrows) */
-.slideshow-gallery {
-  position: relative;
-}
-
-.lightbox-viewport {
-}
-
-.slideshow-lightbox-container {
-  position: relative; /* Needed to position the image and buttons */
-}
-
-/* Image styles */
-.slideshow-image-gallery-item {
-  max-width: 2000px; /* Set a maximum width for the image */
-  margin: 0 auto; /* Center the image horizontally */
-}
-
-.slideshow-image-gallery-item img {
-  width: 100%; /* Make the image responsive */
-  height: auto;
-  display: none;
-}
-
-.slideshow-image-gallery-item img.active {
-  display: block; /* Show the active image */
-}
-
-/* Thumbnail row styles */
-.slgrow {
-  max-width: 1000px; /* Set a maximum width for the thumbnails */
-  margin: 0 auto; /* Center the thumbnails horizontally */
-}
-
-/* Add a pointer when hovering over the thumbnail images */
-.slideshow-thumbnail {
+  color: white;
+  border: none;
+  padding: 10px;
   cursor: pointer;
+  z-index: 10;
 }
 
-/* Text color for white text */
-.w3-text-white, .w3-hover-text-white:hover {
-  color: #fff !important;
+.slgprev { left: 0px; }
+.slgnext { right: 0px; }
+
+.fullscreen .slgprev { left: 0px; }
+.fullscreen .slgnext { right: 0px; }
+.fullscreen .slgfullscreen { 
+  top: 20px;
+  right: 15px;
+}
+.slgfullscreen { 
+  top: 20px;
+  right: 0px;
 }
 
-/* Hide header in fullscreen mode (adjust selector as needed) */
-.slideshow-gallery.fullscreen ~ header {
-  display: none;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .slgcolumn {
+    flex: 0 0 25%;
+  }
 }
-
-/* Hide header in fullscreen mode using a more forceful approach */
-.slideshow-gallery.fullscreen ~ * > header {
-  display: none !important;
-  position: fixed !important;
-  top: -1000px !important;
-  z-index: -1 !important;
-}
-

@@ -1,9 +1,7 @@
 'use strict';
 
+
 window.addEventListener('DOMContentLoaded', () => {
-    console.log('{{ .Params }}')
-{{ if in page.Params.Modules "image-lightbox-gallery" }}
-console.log("image-lightbox-gallery")
     const slideshowGalleryContainer = document.querySelector('.slideshow-gallery');
     if(slideshowGalleryContainer == null) return;
     const lightboxImagesContainer = slideshowGalleryContainer.querySelector('.slideshow-lightbox-container');
@@ -43,22 +41,6 @@ console.log("image-lightbox-gallery")
         }
     });
 
-    // Function to add close button
-    function addCloseButton() {
-        const closeButton = document.createElement('button');
-        closeButton.classList.add('slgclose', 'w3-text-white');
-        closeButton.textContent = '✕';
-        closeButton.style.position = 'absolute';
-        closeButton.style.top = '15px';
-        closeButton.style.right = '35px';
-        closeButton.style.fontSize = '30px';
-        closeButton.style.zIndex = '100';
-        closeButton.style.background = 'none';
-        closeButton.style.border = 'none';
-        closeButton.style.cursor = 'pointer';
-        closeButton.addEventListener('click', toggleFullscreen);
-        slideshowGalleryContainer.appendChild(closeButton);
-    }
 
     // Function to remove close button
     function removeCloseButton() {
@@ -110,5 +92,4 @@ console.log("image-lightbox-gallery")
     }
 
     updateLightbox();
-    {{ end }}
 });
