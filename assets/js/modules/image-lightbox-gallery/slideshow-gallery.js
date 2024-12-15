@@ -1,7 +1,11 @@
-window.addEventListener('DOMContentLoaded', () => {
-    'use strict';
+'use strict';
 
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('{{ .Params }}')
+{{ if in page.Params.Modules "image-lightbox-gallery" }}
+console.log("image-lightbox-gallery")
     const slideshowGalleryContainer = document.querySelector('.slideshow-gallery');
+    if(slideshowGalleryContainer == null) return;
     const lightboxImagesContainer = slideshowGalleryContainer.querySelector('.slideshow-lightbox-container');
     const thumbnailsContainer = slideshowGalleryContainer.querySelector('.slgrow');
     const prevButton = document.querySelector('.slgprev');
@@ -106,4 +110,5 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     updateLightbox();
+    {{ end }}
 });

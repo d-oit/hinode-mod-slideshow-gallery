@@ -14,6 +14,7 @@ resources:
     params:
       description: "Description for city image"
       cssClass: "w-75"
+modules: ["image-lightbox-gallery"]      
 ---
 
 ## Gallery Stack image resource Sample

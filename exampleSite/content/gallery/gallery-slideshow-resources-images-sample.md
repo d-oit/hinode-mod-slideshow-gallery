@@ -1,6 +1,8 @@
 ---
 type: minimal
 title: "Slideshow Gallery Resources Sample1"
+modules: ["gallery-slideshow"]
+test1: true
 thumbnail:
     url: /img/bird.jpg
     
@@ -10,6 +12,7 @@ resources:
     title: "Example caption 1"
     params:
       description: "Description for bird image"
+
       cssClass: "size-large"
   - src: "img/city.jpg"
     title: "Example caption 2"
