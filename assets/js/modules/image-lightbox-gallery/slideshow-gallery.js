@@ -1,5 +1,8 @@
-'use strict';
+{{- $showSlideshowGallery := .Page.Params.showSlideshowGallery | default .Site.Params.showSlideshowGallery -}}
 
+{{ if $showSlideshowGallery }}
+
+'use strict';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slideshowGalleryContainer = document.querySelector('.slideshow-gallery');
@@ -93,3 +96,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
     updateLightbox();
 });
+
+{{ end }}

@@ -35,5 +35,4 @@ timeout = "180s"
   [[module.imports]]
     path = "github.com/gethinode/mod-utils/v2"
 
-[params]
-  showSlideshowGallery = false    
+ 

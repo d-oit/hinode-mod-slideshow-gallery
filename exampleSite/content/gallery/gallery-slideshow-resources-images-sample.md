@@ -1,5 +1,6 @@
 ---
-type: slideshow
+params: 
+  showSlideshowGallery: true
 title: "Slideshow Gallery Resources Sample1"
 modules: ["image-lightbox-gallery"]
 thumbnail:
