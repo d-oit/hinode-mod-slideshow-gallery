@@ -1,6 +1,6 @@
 {
   "name": "@d-oit/hinode-mod-image-lightbox-gallery",
-  "version": "0.0.2",
+  "version": "0.2.0",
   "description": "Hugo module compatible with Hinode image lightbox gallery",
   "keywords": [
     "hugo",

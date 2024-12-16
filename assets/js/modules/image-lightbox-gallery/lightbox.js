@@ -3,7 +3,7 @@
 {{- $enableRotate := .Site.Params.lightbox.enableRotate -}}
 {{- $disableSliderButtons := .Site.Params.lightbox.disableSliderButtons -}}
 {{- $showImageAmount := .Site.Params.lightbox.showImageAmount -}}
-{{- $showImageCaption := default true (.Page.Params.lightbox.showImageCaption | default .Site.Params.lightbox.showImageCaption) -}}
+{{- $showImageCaption := .Page.Params.lightbox.showImageCaption | default .Site.Params.lightbox.showImageCaption -}}
 {{- $showCloseButton := .Page.Params.lightbox.showCloseButton | default true -}}
 /* eslint-enable */
 
@@ -148,29 +148,33 @@
 
     // Keyboard navigation
     const handleKeyNavigation = (e) => {
-      const lightboxContainer = currentImg.closest(`.${LIGHTBOX_CLASSES.container}`);
-      if (lightboxContainer && lightboxContainer instanceof Node) {
-      const controls = {
-        prev: lightboxContainer.querySelector('.prev-button'),
-        next: lightboxContainer.querySelector('.next-button'), 
-        {{ if $showImageAmount }}
-        counter: lightboxContainer.querySelector(`.${LIGHTBOX_CLASSES.imageCounter}`),
-        {{ end }}
-      };
-
-      switch(e.key) {
-        case 'ArrowRight':
-          navigateImage(currentImg, 1);
-          break;
-        case 'ArrowLeft':
-          navigateImage(currentImg, -1);
-          break;
-        case 'Escape':          
-          document.body.removeChild(lightboxContainer);      
-          document.removeEventListener('keydown', handleKeyNavigation);
-          break;
+      try {
+        const lightboxContainer = currentImg.closest(`.${LIGHTBOX_CLASSES.container}`);
+        if (lightboxContainer && lightboxContainer instanceof Node) {
+          const controls = {
+            prev: lightboxContainer.querySelector('.prev-button'),
+            next: lightboxContainer.querySelector('.next-button'), 
+            {{ if $showImageAmount }}
+            counter: lightboxContainer.querySelector(`.${LIGHTBOX_CLASSES.imageCounter}`),
+            {{ end }}
+          };
+    
+          switch(e.key) {
+            case 'ArrowRight':
+              navigateImage(currentImg, 1);
+              break;
+            case 'ArrowLeft':
+              navigateImage(currentImg, -1);
+              break;
+            case 'Escape':                    
+              document.body.removeChild(lightboxContainer);      
+              document.removeEventListener('keydown', handleKeyNavigation);
+              break;
+            }
+          }
+        } catch (error) {
+          console.error('Error in handleKeyNavigation:', error);
         }
-      }
     };
 
     document.addEventListener('keydown', handleKeyNavigation);

@@ -12,7 +12,7 @@ resources:
   - src: "img/city.jpg"
     title: "Example caption 2"
     params:
-      description: "Description for city image"
+      description: "Description for city image1"
       cssClass: "w-75"
 ---
 
