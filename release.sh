@@ -30,11 +30,12 @@ git tag -a "v$VERSION" -m "Release version $VERSION"
 # Step 6: Push the tag to GitHub
 git push origin "v$VERSION"  # Push the specific tag to GitHub
 
-# Step 7: Create a release on GitHub using the GitHub CLI
-gh release create "v$VERSION" --title "Release v$VERSION" --notes "Release notes for version $VERSION" --draft
+# Step 7: Create a release on GitHub using Git commands
+# Create a release branch
+git checkout -b release/v$VERSION
 
-# Optionally, push the release to be public
-gh release publish "v$VERSION"
+# Push the release branch to GitHub
+git push origin release/v$VERSION
 
 # Step 8: Verify that the release and tag are created correctly on GitHub
 # Check your GitHub repository under the "Releases" section for confirmation
