@@ -1,7 +1,7 @@
 {
   "name": "@d-oit/hinode-mod-slideshow-gallery",
-  "version": "1.0.0",
-  "description": "Hugo module compatible for Hinode slideshow gallery",
+  "version": "0.0.1-rc1",
+  "description": "Hugo Slideshow Gallery module compatible for Hinode",
   "keywords": [
     "hugo",
     "module"
