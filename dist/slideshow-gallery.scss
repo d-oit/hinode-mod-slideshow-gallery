@@ -2,7 +2,6 @@
 .slideshow-gallery {
   position: relative;
   width: 100%;
-  //height: 100vh; /* Maximum height of viewport */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -55,7 +54,7 @@
 .slideshow-image-gallery-item img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: inherit;
   display: none;
 }
 
@@ -86,10 +85,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  // max-height: 20%;
-  // overflow-x: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   background-color: #222;
-  // padding: 10px;
 }
 
 .slideshow-thumbnail-column {

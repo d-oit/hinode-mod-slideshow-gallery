@@ -6,9 +6,10 @@
 
 {{- $currentImageIndex := 0 -}}
 
+<div class="container-fluid">
 <div class="slideshow-gallery">
   <!-- Lightbox Viewport -->
-  <div class="lightbox-viewport d-flex flex-grow-1 justify-content-center align-items-center">
+  <div class="lightbox-viewport">
     <div class="slideshow-lightbox-container">
       {{- range $index, $image := $images -}}
         {{ if eq $index 0 }}
@@ -55,4 +56,5 @@
         </div>
       {{- end -}}
     {{- end -}}
+</div>
 </div>
