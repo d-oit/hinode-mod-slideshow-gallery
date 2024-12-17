@@ -11,22 +11,22 @@ try {
         throw new Error('Lightbox images container not found')
     }
 
-    const thumbnailsContainer = slideshowGalleryContainer.querySelector('.slgrow')
+    const thumbnailsContainer = slideshowGalleryContainer.querySelector('.slideshow-thumbnail-row')
     if (!thumbnailsContainer) {
         throw new Error('Thumbnails container not found')
     }
 
-    const prevButton = document.querySelector('.slgprev')
+    const prevButton = document.querySelector('.slideshow-prev-button')
     if (!prevButton) {
         throw new Error('Previous button not found')
     }
 
-    const nextButton = document.querySelector('.slgnext')
+    const nextButton = document.querySelector('.slideshow-next-button')
     if (!nextButton) {
         throw new Error('Next button not found')
     }
 
-    const fullscreenButton = slideshowGalleryContainer.querySelector('.slgfullscreen')
+    const fullscreenButton = slideshowGalleryContainer.querySelector('.slideshow-fullscreen-button')
     if (!fullscreenButton) {
         throw new Error('Fullscreen button not found')
     }
@@ -36,10 +36,9 @@ try {
         throw new Error('Current index span not found')
     }
 
-
-    const slgcaptionContainer = slideshowGalleryContainer.querySelector('.slgcaption-container')
-    if (!slgcaptionContainer) {
-        throw new Error('slgcaptionContainer span not found')
+    const slideshowCaptionContainer = slideshowGalleryContainer.querySelector('.slideshow-caption-container')
+    if (!slideshowCaptionContainer) {
+        throw new Error('slideshowCaptionContainer span not found')
     }
 
     const lightboxImages = Array.from(lightboxImagesContainer.querySelectorAll('img'))
@@ -73,7 +72,7 @@ try {
 
     // Function to remove close button
     function removeCloseButton() {
-        const closeButton = slideshowGalleryContainer.querySelector('.slgclose')
+        const closeButton = slideshowGalleryContainer.querySelector('.slideshow-close-button')
         if (closeButton) {
             slideshowGalleryContainer.removeChild(closeButton)
         }
@@ -116,40 +115,33 @@ try {
             }
         })
 
-        currentIndexSpan.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`
+        currentIndexSpan.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
 
-        const imageTitle = lightboxImages[currentImageIndex].alt
-       
-        if(imageTitle) {
-            // Split the title by newline
-            const titleLines = imageTitle.split('\n');
-            titleLines.forEach((line, index) => {
+        const imageTitle = lightboxImages[currentImageIndex]?.alt?.trim();
+        
+        if (imageTitle) {
+            // Clear previous captions (if any)
+            slideshowCaptionContainer.innerHTML = '';
+        
+            imageTitle.split('\n').forEach((line, index) => {
                 const titleSpan = document.createElement('span');
-                titleSpan.classList.add('title-caption');
-                // First line bold, subsequent lines small
-                if (index === 0) {
-                    titleSpan.classList.add('first-line');
-                } else {
-                    titleSpan.classList.add('additional-lines');
-                }
-                
-                titleSpan.textContent = line.replace('\n','').trim();
-                slgcaptionContainer.appendChild(titleSpan);
-                
+                titleSpan.className = index === 0 ? 'title-caption first-line' : 'title-caption additional-lines';
+                titleSpan.textContent = line.trim();
+                slideshowCaptionContainer.appendChild(titleSpan);
             });
         }
+        
     }
 
     // Utility functions
     const createElementWithClass = (tag, className) => {
-        const element = document.createElement(tag);
-        element.className = className;
-        return element;
-    };
+        const element = document.createElement(tag)
+        element.className = className
+        return element
+    }
 
     updateLightbox()
 
-    
 } catch (error) {
     console.error('Error initializing slideshow gallery:', error)
 }

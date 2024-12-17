@@ -6,10 +6,14 @@
 
 {{- $currentImageIndex := 0 -}}
 
-<div class="slideshow-gallery">
-  <div class="lightbox-viewport">
+<div class="slideshow-gallery d-flex flex-column">
+  <!-- Lightbox Viewport -->
+  <div class="lightbox-viewport d-flex flex-grow-1 justify-content-center align-items-center">
     <div class="slideshow-lightbox-container">
       {{- range $index, $image := $images -}}
+        {{ if eq $index 0 }}
+          {{ $loading = "" }}
+        {{ end }}
         {{- with resources.Get $image.src -}}
           {{ $imageUrl := .RelPermalink }}
           {{ $title := $image.title }}
@@ -25,30 +29,29 @@
       {{- end -}}
     </div>
     <!-- Add navigation buttons -->
-    <button class="slgprev w3-text-white">❮</button>
-    <button class="slgnext w3-text-white">❯</button>
+    <button class="slideshow-prev-button w3-text-white">❮</button>
+    <button class="slideshow-next-button w3-text-white">❯</button>
     <!-- Add fullscreen button -->
-    <button class="slgfullscreen w3-text-white">&#x26F6;</button>
+    <button class="slideshow-fullscreen-button w3-text-white">&#x26F6;</button>
     <!-- Add current index and title span -->
     <span class="lightbox-current-index"></span>
   </div>
 
-  <div class="slgcaption-container">
+  <div class="slideshow-caption-container">
   </div>
 
   <!-- Thumbnail images -->
-  <div class="slgrow">
+  <div class="slideshow-thumbnail-row">
     {{- range $index, $image := $images -}}
+      {{ if eq $index 0 }}
+        {{ $loading = "" }}
+      {{ end }}
       {{- with resources.Get $image.src -}}
         {{ $imageUrl := .RelPermalink }}
         {{ $title := $image.title }}
-        {{ $description := $image.params.description }}
-        {{ if $description }}
-          {{ $title = printf "%s&#x0d;&#x0a;%s" $title $description }}
-        {{ end }}
-        {{ $imageClass := $image.params.cssClass }}
-        <div class="slgcolumn">
-          <img src="{{ $imageUrl }}" class="slgdemo cursor" alt="{{ $title }}">
+        {{ $imageClass := "slideshow-thumbnail-image cursor" }}
+        <div class="slideshow-thumbnail-column">
+          {{ partial "assets/image.html" (dict "url" $imageUrl "ratio" $ratio "page" $.Page "class" $imageClass "loading" $loading "title" $title) }}
         </div>
       {{- end -}}
     {{- end -}}

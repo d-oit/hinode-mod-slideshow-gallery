@@ -1,18 +1,17 @@
 ---
-params: 
-  showSlideshowGallery: true
-title: "Slideshow Gallery Resources Sample1"
+type: minimal
 modules: ["slideshow-gallery"]
+title: "Slideshow Gallery Resources Sample"
+description: "Slideshow Gallery Resources Sample"
+slug: "slideshow-gallery-res-img-sample1"
 thumbnail:
   url: /img/bird.jpg
     
-slug: "slideshow-gallery-res-img-sample1"
 resources:
   - src: "img/bird.jpg"
     title: "Example caption 1"
     params:
       description: "Description for bird image"
-
       cssClass: "size-large"
   - src: "img/city.jpg"
     title: "Example caption 2"
