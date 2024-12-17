@@ -1,8 +1,8 @@
-# Hinode Module - Template
+# Hinode Module - Slideshow Gallery
 
 <!-- Tagline -->
 <p align="center">
-    <b>A template to define a Hugo module compatible with Hinode</b>
+    <b>A slideshow gallery shortcode for Hugo compatible with Hinode</b>
     <br />
 </p>
 
@@ -49,6 +49,18 @@ This module supports the following parameters (see the section `params.modules` 
         integration = "optional"
         state = "async"
         localize = true
+```
+
+## Load the module in the markdown file in front matter
+
+```yaml
+modules: ["slideshow-gallery"]
+```
+
+## slideshow-gallery markdown shortcode
+
+```markdown
+{{< slideshow-gallery >}}
 ```
 
 <!-- MARKDOWN LINKS -->

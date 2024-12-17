@@ -115,22 +115,21 @@ try {
             }
         })
 
-        currentIndexSpan.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
+        currentIndexSpan.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`
 
-        const imageTitle = lightboxImages[currentImageIndex]?.alt?.trim();
-        
+        const imageTitle = lightboxImages[currentImageIndex]?.alt?.trim()
+
         if (imageTitle) {
             // Clear previous captions (if any)
-            slideshowCaptionContainer.innerHTML = '';
-        
+            slideshowCaptionContainer.innerHTML = ''
+
             imageTitle.split('\n').forEach((line, index) => {
-                const titleSpan = document.createElement('span');
-                titleSpan.className = index === 0 ? 'title-caption first-line' : 'title-caption additional-lines';
-                titleSpan.textContent = line.trim();
-                slideshowCaptionContainer.appendChild(titleSpan);
-            });
+                const titleSpan = document.createElement('span')
+                titleSpan.className = index === 0 ? 'title-caption first-line' : 'title-caption additional-lines'
+                titleSpan.textContent = line.trim()
+                slideshowCaptionContainer.appendChild(titleSpan)
+            })
         }
-        
     }
 
     // Utility functions
@@ -139,6 +138,41 @@ try {
         element.className = className
         return element
     }
+
+    // Add event listeners for arrow keys
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length
+            updateLightbox()
+        } else if (event.key === 'ArrowRight') {
+            currentImageIndex = (currentImageIndex + 1) % lightboxImages.length
+            updateLightbox()
+        }
+    })
+
+    // Add event listeners for swipe gestures
+    let touchStartX = 0
+    let touchEndX = 0
+
+    slideshowGalleryContainer.addEventListener('touchstart', (event) => {
+        touchStartX = event.touches[0].clientX
+    })
+
+    slideshowGalleryContainer.addEventListener('touchmove', (event) => {
+        touchEndX = event.touches[0].clientX
+    })
+
+    slideshowGalleryContainer.addEventListener('touchend', () => {
+        if (touchStartX - touchEndX > 50) {
+            // Swipe left
+            currentImageIndex = (currentImageIndex + 1) % lightboxImages.length
+            updateLightbox()
+        } else if (touchStartX - touchEndX < -50) {
+            // Swipe right
+            currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length
+            updateLightbox()
+        }
+    })
 
     updateLightbox()
 

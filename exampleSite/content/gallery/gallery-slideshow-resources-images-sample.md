@@ -3,7 +3,7 @@ type: minimal
 modules: ["slideshow-gallery"]
 title: "Slideshow Gallery Resources Sample"
 description: "Slideshow Gallery Resources Sample"
-slug: "slideshow-gallery-res-img-sample1"
+slug: "slideshow-gallery-res-img-sample"
 thumbnail:
   url: /img/bird.jpg
     
