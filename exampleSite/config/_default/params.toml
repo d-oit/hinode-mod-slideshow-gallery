@@ -26,7 +26,7 @@
     checkVersion = false
 
 [home]
-    # sections = ["posts"]
+    sections = ["gallery"]
     fullCover = false
     centerHeadline = false
     style = ""
@@ -149,7 +149,7 @@
     # twitter = "https://twitter.com/gethinode"
     # linkedIn = ""
     github = "https://github.com/gethinode/hinode"
-    section = "blog"
+    section = "gallery"
     [schema.author]
         name = "Mark Dumay"
         # twitter = "https://twitter.com/markdumay"
@@ -171,7 +171,4 @@
 [links]
     hinode = "https://gethinode.com"
 
-[lightbox]
-    enableZoom = true
-    enableRotate = false 
-    showImageAmount = true
+

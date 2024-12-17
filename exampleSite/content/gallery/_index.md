@@ -1,6 +1,6 @@
 ---
 author: d.o.it
-title: Gallery
+title: Slideshow Gallery
 nested: true
 type: minimal
 ---

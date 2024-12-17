@@ -1,7 +1,7 @@
 {
-  "name": "@d-oit/hinode-mod-image-lightbox-gallery",
+  "name": "@d-oit/hinode-mod-slideshow-gallery",
   "version": "0.0.1",
-  "description": "Hugo module compatible with Hinode image lightbox gallery",
+  "description": "Hugo module compatible for Hinode slideshow gallery",
   "keywords": [
     "hugo",
     "module"
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/d-oit/hinode-mod-image-lightbox-gallery.git"
+    "url": "git+https://github.com/d-oit/hinode-mod-slideshow-gallery.git"
   },
   "author": "Mark Dumay",
   "license": "MIT",

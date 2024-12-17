@@ -2,16 +2,16 @@ resourcedir = '../resources/'
 baseURL = 'http://example.org/'
 languageCode = "en-us"
 defaultContentLanguage = "en"
-title = 'Test site for mod-image-lightbox-gallery'
+title = 'Test site for mod-slideshow-gallery'
 
 timeout = "180s"
 
 [module]
-  replacements = 'github.com/d-oit/mod-image-lightbox-gallery -> ../..'
+  replacements = 'github.com/d-oit/mod-slideshow-gallery -> ../..'
   # Build and serve using local mod-template clone declared in the named Hugo workspace:
-  workspace = "mod-image-lightbox-gallery.work"
+  workspace = "mod-slideshow-gallery.work"
   [[module.imports]]
-    path = "github.com/d-oit/mod-image-lightbox-gallery"
+    path = "github.com/d-oit/mod-slideshow-gallery"
   [[module.imports]]
     path = "github.com/gethinode/hinode"
   [[module.imports]]

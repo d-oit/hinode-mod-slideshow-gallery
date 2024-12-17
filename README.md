@@ -43,17 +43,10 @@ This module uses [semantic-release][semantic-release] to automate the release of
 This module supports the following parameters (see the section `params.modules` in `config.toml`):
 
 ```toml
-showSlideshowGallery = false
-
-[lightbox]
-    enableZoom = true
-    enableRotate = false
-    showImageAmount = true
-    showImageCaption = true
 
 [modules]
-    [modules.image-lightbox-gallery]
-        integration = "critical"
+    [modules.mod-slideshow-gallery]
+        integration = "optional"
         state = "async"
         localize = true
 ```

@@ -3,6 +3,13 @@
     extended = true
     min = "0.110.0"
     max = ""
+[[module.mounts]]
+    source = "dist/slideshow-gallery.js"
+    target = "assets/js/modules/slideshow-gallery/slideshow-gallery.js"
+  [[module.mounts]]
+    source = "dist"
+    target = "assets/scss"
+    includeFiles = "slideshow-gallery.scss"
   [[module.mounts]]
     source = 'layouts'
     target = 'layouts'

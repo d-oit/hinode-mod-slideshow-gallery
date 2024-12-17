@@ -2,7 +2,7 @@
 params: 
   showSlideshowGallery: true
 title: "Slideshow Gallery Resources Sample1"
-modules: ["image-lightbox-gallery"]
+modules: ["slideshow-gallery"]
 thumbnail:
   url: /img/bird.jpg
     

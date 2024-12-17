@@ -14,6 +14,9 @@
           {{ $imageUrl := .RelPermalink }}
           {{ $title := $image.title }}
           {{ $description := $image.params.description }}
+          {{ if $description }}
+            {{ $title = printf "%s\n%s" $title $description }}
+          {{ end }}
           {{ $imageClass := $image.params.cssClass }}
           <div class="slideshow-image-gallery-item">
             {{ partial "assets/image.html" (dict "url" $imageUrl "ratio" $ratio "page" $.Page "class" $imageClass "loading" $loading "title" $title) }}
@@ -31,7 +34,6 @@
   </div>
 
   <div class="slgcaption-container">
-    <span class="lightbox-title"></span>
   </div>
 
   <!-- Thumbnail images -->
@@ -41,11 +43,13 @@
         {{ $imageUrl := .RelPermalink }}
         {{ $title := $image.title }}
         {{ $description := $image.params.description }}
+        {{ if $description }}
+          {{ $title = printf "%s&#x0d;&#x0a;%s" $title $description }}
+        {{ end }}
         {{ $imageClass := $image.params.cssClass }}
         <div class="slgcolumn">
           <img src="{{ $imageUrl }}" class="slgdemo cursor" alt="{{ $title }}">
         </div>
       {{- end -}}
     {{- end -}}
-  </div>
 </div>
