@@ -63,6 +63,41 @@ modules: ["slideshow-gallery"]
 {{< slideshow-gallery >}}
 ```
 
+## slideshow-gallery Shortcode Parameters
+
+The `slideshow-gallery` shortcode supports the following parameters:
+
+* `ratio`: Specifies the aspect ratio of the images. Default is "auto".
+* `loading`: Specifies the loading behavior of the images. Default is "lazy".
+
+These parameters can be used to customize the behavior and appearance of the slideshow gallery. For more details, refer to the `layouts/shortcodes/slideshow-gallery.html` file.
+
+## Examples
+
+Here are some examples of using the `slideshow-gallery` shortcode with different parameters:
+
+* **Default usage**:
+  ```markdown
+  {{< slideshow-gallery >}}
+  ```
+
+* **Specifying aspect ratio**:
+  ```markdown
+  {{< slideshow-gallery ratio="16x9" >}}
+  ```
+
+* **Specifying loading behavior**:
+  ```markdown
+  {{< slideshow-gallery loading="eager" >}}
+  ```
+
+* **Combining parameters**:
+  ```markdown
+  {{< slideshow-gallery ratio="4x3" loading="lazy" >}}
+  ```
+
+These examples demonstrate how to use the `slideshow-gallery` shortcode with different parameters to customize the behavior and appearance of the slideshow gallery. For more details, refer to the `layouts/shortcodes/slideshow-gallery.html` file.
+
 <!-- MARKDOWN LINKS -->
 [hugo]: https://gohugo.io
 [hinode_docs]: https://gethinode.com
