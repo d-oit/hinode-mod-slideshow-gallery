@@ -98,6 +98,18 @@ Here are some examples of using the `slideshow-gallery` shortcode with different
 
 These examples demonstrate how to use the `slideshow-gallery` shortcode with different parameters to customize the behavior and appearance of the slideshow gallery. For more details, refer to the `layouts/shortcodes/slideshow-gallery.html` file.
 
+## dist/slideshow-gallery.js
+
+The `dist/slideshow-gallery.js` file provides the JavaScript functionality required for the slideshow gallery module. This file is essential for the interactive features of the slideshow gallery, such as navigation buttons, fullscreen mode, and image transitions. It ensures that the slideshow gallery operates smoothly and provides a seamless user experience.
+
+## dist/slideshow-gallery.scss
+
+The `dist/slideshow-gallery.scss` file contains the SCSS styles for the slideshow gallery module. This file is included in the `assets/scss` directory and provides the necessary styles for the slideshow gallery's appearance.
+
+## config.toml
+
+The `dist` files are referenced in the `config.toml` file. The JavaScript file is mounted to `assets/js/modules/slideshow-gallery/slideshow-gallery.js`, and the SCSS file is included in the `assets/scss` directory.
+
 <!-- MARKDOWN LINKS -->
 [hugo]: https://gohugo.io
 [hinode_docs]: https://gethinode.com
