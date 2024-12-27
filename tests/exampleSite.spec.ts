@@ -91,18 +91,23 @@ test.describe('Slideshow Gallery Tests', () => {
 
         test('should display thumbnails and navigate to corresponding image', async ({ page }) => {
           await page.waitForSelector('.slideshow-thumbnail-image');
-          const thumbnails = await page.$$('.slideshow-thumbnail-image');
-          expect(thumbnails.length).toBeGreaterThan(1); // Ensure there are at least 2 thumbnails
+          const thumbnailLocator = page.locator('.slideshow-thumbnail-image');
 
-          // Click second thumbnail
+           // Verify we have thumbnails (minimum 1)
+          const count = await thumbnailLocator.count();
+          expect(count).toBeGreaterThan(0);
+          
+          /// Click second thumbnail (using all() for array of elements)
+          const thumbnails = await thumbnailLocator.all();
           await thumbnails[1].click();
-          const currentIndex = await page.$eval('.lightbox-current-index', (el: HTMLElement) => el.textContent);
-          expect(currentIndex).toMatch(/2/);
+          
+          // Check index
+          const currentIndex = page.locator('.lightbox-current-index');
+          await expect(currentIndex).toHaveText(/2/);
 
           // Click first thumbnail
           await thumbnails[0].click();
-          const firstIndex = await page.$eval('.lightbox-current-index', (el: HTMLElement) => el.textContent);
-          expect(firstIndex).toMatch(/1/);
+          await expect(currentIndex).toHaveText(/1/);
         });
 
         test('should display captions and descriptions correctly', async ({ page }) => {
