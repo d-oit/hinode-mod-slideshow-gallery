@@ -1,10 +1,10 @@
-/_vendor
-/public
-/resources
+_vendor/
+public/
+resources/
 node_modules/
-exampleSite/public
-exampleSite/resources
-
+exampleSite/public/
+exampleSite/resources/
+test-results/
 .DS_store
 .hugo_build.lock
 hugo_stats.json

@@ -1,15 +1,23 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Read from ".env" file.
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+// Use the environment variable for the base URL
+const baseURL = process.env.BASE_URL_TESTING || 'http://localhost:1313';
+
 
 export default defineConfig({
   testDir: './tests',
-  timeout: 30000,
-  expect: {
-    timeout: 5000,
-  },
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    actionTimeout: 0,
-    baseURL: 'http://localhost:3000',
+    baseURL,
     trace: 'on-first-retry',
   },
   projects: [
@@ -49,4 +57,15 @@ export default defineConfig({
       },
     },
   ],
+  webServer: {
+    ignoreHTTPSErrors: true,
+    command: 'npm run start',
+    url: baseURL,
+    reuseExistingServer: process.env.REUSE_SERVER === 'true',
+    timeout: 120000, // Add timeout of 2 minutes
+    stdout: 'pipe',  // Pipe the output
+    stderr: 'pipe',  // Pipe the error output
+    // Add a pattern to wait for
+    readyPattern: 'Web Server is available at', // Adjust this to match Hugo's actual output
+  }
 });
