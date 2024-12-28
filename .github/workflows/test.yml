@@ -37,6 +37,9 @@ jobs:
     - name: Perform clean install of npm
       run: npm ci
 
+    - name: Playwright install
+      run: npx install playwright
+
     - name: Run tests
       run: npm run test
 
