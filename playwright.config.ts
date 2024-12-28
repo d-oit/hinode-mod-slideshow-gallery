@@ -62,9 +62,10 @@ export default defineConfig({
     command: 'npm run start',
     url: baseURL,
     reuseExistingServer: process.env.REUSE_SERVER === 'true',
-    timeout: 120000, // Add timeout of 2 minutes
+    timeout: 60000, 
     stdout: 'pipe',  // Pipe the output
     stderr: 'pipe',  // Pipe the error output
+    reporter: 'list',
     // Add a pattern to wait for
     readyPattern: 'Web Server is available at', // Adjust this to match Hugo's actual output
   }
