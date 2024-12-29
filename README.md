@@ -60,9 +60,7 @@ modules: ["slideshow-gallery"]
 ## slideshow-gallery markdown shortcode
 
 ```markdown
-{{< example lang="hugo" >}}
 {{< slideshow-gallery >}}
-{{< /example >}}
 ```
 
 ## slideshow-gallery Shortcode Parameters
