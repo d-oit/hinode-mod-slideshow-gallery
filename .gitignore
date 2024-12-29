@@ -5,6 +5,7 @@ node_modules/
 exampleSite/public/
 exampleSite/resources/
 test-results/
+playwright-report/
 .DS_store
 .hugo_build.lock
 hugo_stats.json
