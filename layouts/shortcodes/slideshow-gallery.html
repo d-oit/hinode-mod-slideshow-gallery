@@ -1,4 +1,5 @@
 {{- $ratio := .Get "ratio" | default "auto" -}}
+{{- $ratioThumbnail := .Get "ratioThumbnail" | default "auto" -}}
 {{- $loading := .Get "loading" | default "lazy" -}}
 
 <!-- Initialize $images to prevent the undefined variable error -->
@@ -52,7 +53,7 @@
         {{ $title := $image.title }}
         {{ $imageClass := "slideshow-thumbnail-image cursor" }}
         <div class="slideshow-thumbnail-column">
-          {{ partial "assets/image.html" (dict "url" $imageUrl "ratio" $ratio "page" $.Page "class" $imageClass "loading" $loading "title" $title) }}
+          {{ partial "assets/image.html" (dict "url" $imageUrl "page" $.Page "ratio" $ratioThumbnail "class" $imageClass "loading" $loading "title" $title) }}
         </div>
       {{- end -}}
     {{- end -}}
