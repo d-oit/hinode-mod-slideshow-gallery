@@ -1,16 +1,18 @@
-name: Test
+name: Playwright Test
+
 on:
   workflow_dispatch:
   push:
-     tags:
-       - v*
-     branches: [ main ]
+    tags:
+      - v*
+    branches: [main]
   pull_request:
-     branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
         node-version: [20.x, 22.x]
@@ -19,26 +21,32 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 # Fetch only the latest commit for faster builds
 
-    - name: Install Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: ">1.0.0"
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ">1.0.0"
+          cache: true
 
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: '**/package-lock.json'
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
-    - name: Perform clean install of npm
-      run: npm ci
+      - name: Perform clean install of npm
+        run: npm ci
 
-    - name: Run tests
-      run: npm run test
+      - name: Install Playwright Browsers
+        run: npx playwright install
 
-    - name: Run Playwright tests
-      run: npm run test:playwright
+      - name: Run tests
+        run: npm run test
+
+      - name: Run Playwright tests
+        run: npm run test:playwright
