@@ -15,7 +15,6 @@ go.work.sum
 # env file
 .env
 
-
 # Ignore log files
 *.log
 
