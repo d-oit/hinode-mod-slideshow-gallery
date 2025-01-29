@@ -1,11 +1,9 @@
 _vendor/
 public/
 resources/
-node_modules/
 exampleSite/public/
 exampleSite/resources/
 test-results/
-playwright-report/
 .DS_store
 .hugo_build.lock
 hugo_stats.json
@@ -16,3 +14,13 @@ go.work.sum
 
 # env file
 .env
+
+
+# Ignore log files
+*.log
+
+# Ignore node_modules
+node_modules/
+
+# Ignore playwright-report directory
+playwright-report/
