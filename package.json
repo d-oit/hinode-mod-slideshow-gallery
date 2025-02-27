@@ -45,7 +45,7 @@
     "commitizen": "^4.3.1",
     "cpy-cli": "^5.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "hugo-bin": "^0.141.2",
+    "hugo-bin": "^0.142.0",
     "husky": "^9.1.7",
     "playwright": "^1.50.1",
     "rimraf": "^6.0.1",
