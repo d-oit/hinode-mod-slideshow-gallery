@@ -136,5 +136,7 @@ github.com/gethinode/mod-utils/v2 v2.10.0 h1:2GN6f3wcu/TlbzPD6DFlWyx+KomXz6LnBv7
 github.com/gethinode/mod-utils/v2 v2.10.0/go.mod h1:GTYeknoLujNjfDxI+V9Dcug26CYJSTJ0B/U2dagw9oY=
 github.com/nextapps-de/flexsearch v0.0.0-20240501124520-961c3ae84a87 h1:6PNbL0/LxO8Xl8MZSe5uvCidYNpFTz9nlWTqj2qdlzA=
 github.com/nextapps-de/flexsearch v0.0.0-20240501124520-961c3ae84a87/go.mod h1:5GdMfPAXzbA2gXBqTjC6l27kioSYzHlqDMh0+wyx7sU=
+github.com/nextapps-de/flexsearch v0.0.0-20250322144212-63531ef4f106 h1:BsQzS3cI5+xhzYwHhEviUqy7lSP4mPlAMtKadsDFOtA=
+github.com/nextapps-de/flexsearch v0.0.0-20250322144212-63531ef4f106/go.mod h1:5GdMfPAXzbA2gXBqTjC6l27kioSYzHlqDMh0+wyx7sU=
 github.com/twbs/bootstrap v5.3.3+incompatible h1:goFoqinzdHfkeegpFP7pvhbd0g+A3O2hbU3XCjuNrEQ=
 github.com/twbs/bootstrap v5.3.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
