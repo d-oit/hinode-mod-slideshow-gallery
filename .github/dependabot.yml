@@ -1,15 +1,1 @@
-version: 2
-updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "monthly"  # Changed from "weekly" to "monthly"
-    open-pull-requests-limit: 10
-  - package-ecosystem: npm
-    directory: "/"
-    schedule:
-      interval: "monthly"  # Changed from "daily" to "monthly"
-    commit-message:
-      prefix: fix
-      include: scope
-    versioning-strategy: increase
+
