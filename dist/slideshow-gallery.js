@@ -141,12 +141,15 @@ try {
 
     // Add event listeners for arrow keys
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') {
-            currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length
-            updateLightbox()
-        } else if (event.key === 'ArrowRight') {
-            currentImageIndex = (currentImageIndex + 1) % lightboxImages.length
-            updateLightbox()
+        // Only handle keyboard events, not synthetic events from button clicks
+        if (event.isTrusted) {
+            if (event.key === 'ArrowLeft') {
+                currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length
+                updateLightbox()
+            } else if (event.key === 'ArrowRight') {
+                currentImageIndex = (currentImageIndex + 1) % lightboxImages.length
+                updateLightbox()
+            }
         }
     })
 
