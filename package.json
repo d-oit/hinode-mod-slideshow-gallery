@@ -87,6 +87,6 @@
   },
   "dependencies": {
     "@playwright/test": "^1.53.2",
-    "dotenv": "^17.0.0"
+    "dotenv": "^17.2.1"
   }
 }
