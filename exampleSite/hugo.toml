@@ -12,16 +12,16 @@ timeout = "180s"
   workspace = "mod-slideshow-gallery.work"
   [[module.imports]]
     path = "github.com/d-oit/mod-slideshow-gallery"
-  [[module.imports]]
+[[module.imports]]
     path = "github.com/gethinode/hinode"
   [[module.imports]]
     path = "github.com/gethinode/mod-bootstrap"
   [[module.imports]]
     path = "github.com/gethinode/mod-csp"
   [[module.imports]]
-    path = "github.com/gethinode/mod-flexsearch/v2"
+    path = "github.com/gethinode/mod-flexsearch/v3"
   [[module.imports]]
-    path = "github.com/gethinode/mod-fontawesome"
+    path = "github.com/gethinode/mod-fontawesome/v2"
   [[module.imports]]
     path = "github.com/gethinode/mod-google-analytics"
   [[module.imports]]
@@ -33,6 +33,6 @@ timeout = "180s"
   [[module.imports]]
     path = "github.com/gethinode/mod-simple-datatables"
   [[module.imports]]
-    path = "github.com/gethinode/mod-utils/v2"
+    path = "github.com/gethinode/mod-utils/v4"
 
  
