@@ -1,29 +1,58 @@
 name: Release
+
 on:
+  workflow_run:
+    workflows: ["Test"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
-  push:
-     branches:
-       - main
+    inputs:
+      force:
+        description: 'Force release even if tests failed'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
-  release:
-    name: Create release
+  check-tests:
+    name: Check Test Status
     runs-on: ubuntu-latest
+    outputs:
+      tests-passed: ${{ steps.check.outputs.tests-passed }}
+    
+    steps:
+      - name: Check test workflow status
+        id: check
+        run: |
+          if [[ "${{ github.event.workflow_run.conclusion }}" == "success" ]] || [[ "${{ inputs.force }}" == "true" ]]; then
+            echo "tests-passed=true" >> $GITHUB_OUTPUT
+            echo "✅ Tests passed or force release requested"
+          else
+            echo "tests-passed=false" >> $GITHUB_OUTPUT
+            echo "❌ Tests failed. Release blocked."
+            exit 1
+          fi
+
+  release:
+    name: Create Release
+    needs: check-tests
+    runs-on: ubuntu-latest
+    if: needs.check-tests.outputs.tests-passed == 'true'
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Make sure the release step uses its own credentials
           persist-credentials: false
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
+          cache: 'npm'
 
-      - name: Perform clean install of npm
+      - name: Install dependencies
         run: npm ci
 
       - name: Create release
@@ -31,3 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GIT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+
+      - name: Notify success
+        if: success()
+        run: echo "🚀 Release completed successfully"
