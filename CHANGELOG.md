@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/d-oit/hinode-mod-slideshow-gallery/compare/v1.2.8...v2.0.0) (2025-10-04)
+
+
+### Features
+
+* **ci:** implement test-first release workflow with enhanced security ([b36783b](https://github.com/d-oit/hinode-mod-slideshow-gallery/commit/b36783bc5060941e5a05a8ffafcb50c783123972))
+
+
+### BREAKING CHANGES
+
+* **ci:** Releases now require all tests to pass successfully
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
