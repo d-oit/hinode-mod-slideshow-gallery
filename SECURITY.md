@@ -1,21 +1,19 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+We take security seriously and ask that any vulnerabilities be reported **privately**.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+* Please use [GitHub’s private vulnerability reporting feature](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing) on this repository.
+* Do **not** open a public issue or pull request for security-related matters.
+
+## Response
+
+* We aim to acknowledge valid reports within **48 hours**.
+* Once confirmed, we will work on a fix and notify you when it’s resolved.
+* Please allow us time to address the issue before any public disclosure.
+
+## Notes
+
+* Public issues or PRs disclosing vulnerabilities may be closed for security reasons.
+* Always keep your installation up to date with the latest release.
