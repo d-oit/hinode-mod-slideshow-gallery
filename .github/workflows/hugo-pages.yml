@@ -46,18 +46,19 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Install Node.js dependencies
-        working-directory: ./exampleSite
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-      - name: Build with Hugo
-        working-directory: ./exampleSite
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build with npm
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
-        run: |
-          hugo \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+          HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}/
+        run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
