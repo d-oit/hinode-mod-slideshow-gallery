@@ -1,0 +1,19 @@
+arguments:
+  src:
+  page:
+  mode:
+  ratio:
+  portrait:
+  image-height:
+  image-width:
+  loading:
+  priority:
+  sizes:
+  title:
+  caption:
+  wrapper:
+  class:
+  figclass:
+  plain:
+  anchor:
+  absolute-url:

@@ -13,3 +13,7 @@ actions:
     title: "Get started"
     icon: "fas book-open"
 ---
+
+[Show gallery demo](/Gallery/)
+
+{{< file file="./readme.md" id="file-collapse-2" >}}
