@@ -14,16 +14,13 @@
     <a href="https://gethinode.com" alt="Hinode theme">
         <img src="https://img.shields.io/badge/theme-hinode-blue">
     </a>
-    <a href="https://github.com/gethinode/mod-template/commits/main" alt="Last commit">
+    <a href="https://github.com/d-oit/hinode-mod-slideshow-gallery/commits/main" alt="Last commit">
         <img src="https://img.shields.io/github/last-commit/d-oit/hinode-mod-slideshow-gallery.svg">
     </a>
-    <a href="https://github.com/gethinode/mod-template/issues" alt="Issues">
-        <img src="https://img.shields.io/github.com/d-oit/hinode-mod-slideshow-gallery.svg">
-    </a>
-    <a href="https://github.com/gethinode/mod-template/pulls" alt="Pulls">
+    <a href="https://github.com/d-oit/hinode-mod-slideshow-gallery/pulls" alt="Pulls">
         <img src="https://img.shields.io/github/issues-pr-raw/d-oit/hinode-mod-slideshow-gallery.svg">
     </a>
-    <a href="https://github.com/gethinode/mod-template/blob/main/LICENSE" alt="License">
+    <a href="https://github.com/d-oit/hinode-mod-slideshow-gallery/blob/main/LICENSE" alt="License">
         <img src="https://img.shields.io/github/license/d-oit/hinode-mod-slideshow-gallery">
     </a>
 </p>
