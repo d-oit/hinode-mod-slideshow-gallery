@@ -1,10 +1,11 @@
-resourcedir = '../resources/'
-baseURL = 'http://example.org/'
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = 'Test site for mod-slideshow-gallery'
-
 timeout = "180s"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 [module]
   replacements = 'github.com/d-oit/mod-slideshow-gallery -> ../..'

@@ -1,15 +1,19 @@
-# Source: https://nicolasiensen.github.io/2022-07-23-automating-dependency-updates-with-dependabot-github-auto-merge-and-github-actions/
-name: Dependabot auto-merge
-on: pull_request_target
+name: Dependabot Auto-merge
+
+on: 
+  pull_request_target:
+    types: [opened, synchronize, reopened]
 
 permissions:
   pull-requests: write
   contents: write
+  checks: read
 
 jobs:
-  review-dependabot-pr:
+  dependabot-auto-merge:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    
     steps:
       - name: Dependabot metadata
         id: metadata
@@ -17,24 +21,31 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Enable auto-merge for Dependabot PRs
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Wait for status checks
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          check-name: 'Run Tests'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 30
+          allowed-conclusions: success
 
-      - name: Approve patch and minor updates
-        if: ${{steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' || steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor'}}
-        run: gh pr review $PR_URL --approve -b "I'm **approving** this pull request because **it includes a patch or minor update**"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          
-      - name: Comment on major updates of any dependencies
-        if: ${{steps.dependabot-metadata.outputs.update-type == 'version-update:semver-major'}}
+      - name: Enable auto-merge for patch/minor updates
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' || 
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
         run: |
-          gh pr comment $PR_URL --body "I'm **not approving** this PR because **it includes a major update of a dependency**"
-          gh pr edit $PR_URL --add-label "requires-manual-qa"
+          gh pr merge --auto --squash "$PR_URL"
+          gh pr review "$PR_URL" --approve -b "✅ Auto-approving ${{ steps.metadata.outputs.update-type }} update after tests passed"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Label major updates
+        if: steps.metadata.outputs.update-type == 'version-update:semver-major'
+        run: |
+          gh pr comment "$PR_URL" --body "⚠️ Major update detected. Manual review required."
+          gh pr edit "$PR_URL" --add-label "requires-manual-qa"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 {
   "name": "@d-oit/hinode-mod-slideshow-gallery",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "description": "Hugo Slideshow Gallery module compatible for Hinode",
   "keywords": [
     "hugo",
@@ -31,10 +31,10 @@
     "type": "git",
     "url": "git+https://github.com/d-oit/hinode-mod-slideshow-gallery.git"
   },
-  "author": "Mark Dumay",
+  "author": "d.o. (module), Mark Dumay (Hinode)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gethinode/hinode/issues"
+    "url": "https://github.com/d-oit/hinode-mod-slideshow-gallery/issues"
   },
   "homepage": "https://gethinode.com",
   "devDependencies": {
