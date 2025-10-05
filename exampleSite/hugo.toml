@@ -12,7 +12,7 @@ timeout = "180s"
   workspace = "mod-slideshow-gallery.work"
   [[module.imports]]
     path = "github.com/d-oit/mod-slideshow-gallery"
-[[module.imports]]
+  [[module.imports]]
     path = "github.com/gethinode/hinode"
   [[module.imports]]
     path = "github.com/gethinode/mod-bootstrap"

@@ -1,19 +1,24 @@
 ---
 title: Welcome to Hinode!
-description: A clean documentation and blog theme for your Hugo site based on Bootstrap 5.
-thumbnail:
-    url: /img/sunrise.jpg
-    author: Harris Vo
-    authorURL: https://unsplash.com/@hoanvokim
-    origin: https://unsplash.com/photos/ZX6BPboJrYk
-    originName: Unsplash
-actions:
-  get-started:
-    url: "https://gethinode.com/docs"
-    title: "Get started"
-    icon: "fas book-open"
+description: A Hinode Slideshow Gallery module
+content_blocks:
+  - _bookshop_name: hero
+    heading:
+      title: Welcome to Hinode!
+      content: |-
+        A Hinode Slideshow Gallery module (hinode-mod-slideshow-gallery)
+      width: 6
+    background:
+      color: primary
+      subtle: true
+    illustration:
+      image: /img/sunrise.jpg
+      ratio: 16x9
+    width: 8
+    links:
+      - title: Gallery showcase
+        url: /gallery
+        icon: fas chevron-right
+    orientation: horizontal
+    justify: center
 ---
-
-[Show gallery demo](/Gallery/)
-
-{{< file file="./readme.md" id="file-collapse-2" >}}
