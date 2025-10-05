@@ -1,5 +1,5 @@
 resourcedir = '../resources/'
-baseURL = '/'
+baseURL = 'https://d-oit.github.io/hinode-mod-slideshow-gallery/'
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = 'Test site for mod-slideshow-gallery'
