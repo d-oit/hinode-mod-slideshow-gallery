@@ -14,7 +14,7 @@
     <div class="slideshow-lightbox-container">
       {{- range $index, $image := $images -}}
         {{ if eq $index 0 }}
-          {{ $loading = "" }}
+          {{ $loading = "eager" }}
         {{ end }}
         {{- with resources.Get $image.src -}}
           {{ $imageUrl := .RelPermalink }}
@@ -25,7 +25,7 @@
           {{ end }}
           {{ $imageClass := $image.params.cssClass }}
           <div class="slideshow-image-gallery-item">
-            {{ partial "assets/image.html" (dict "url" $imageUrl "ratio" $ratio "page" $.Page "class" $imageClass "loading" $loading "title" $title) }}
+            {{ partial "assets/helpers/image-definition.html" (dict "src" $imageUrl "ratio" $ratio "page" $.Page "class" $imageClass "loading" $loading "title" $title) }}
           </div>
         {{- end -}}
       {{- end -}}
@@ -46,14 +46,14 @@
   <div class="slideshow-thumbnail-row">
     {{- range $index, $image := $images -}}
       {{ if eq $index 0 }}
-        {{ $loading = "" }}
+        {{ $loading = "eager" }}
       {{ end }}
       {{- with resources.Get $image.src -}}
         {{ $imageUrl := .RelPermalink }}
         {{ $title := $image.title }}
         {{ $imageClass := "slideshow-thumbnail-image cursor" }}
         <div class="slideshow-thumbnail-column">
-          {{ partial "assets/image.html" (dict "url" $imageUrl "page" $.Page "ratio" $ratioThumbnail "class" $imageClass "loading" $loading "title" $title) }}
+          {{ partial "assets/helpers/image-definition.html" (dict "src" $imageUrl "page" $.Page "ratio" $ratioThumbnail "class" $imageClass "loading" $loading "title" $title) }}
         </div>
       {{- end -}}
     {{- end -}}
