@@ -1,1 +1,5 @@
-baseURL = "/"
+baseURL = "https://github.com/d-oit/hinode-mod-slideshow-gallery/"
+timeout = "10m"
+
+[params.main]
+    canonifyAssetsURLs = true
