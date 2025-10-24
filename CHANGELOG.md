@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/d-oit/hinode-mod-slideshow-gallery/compare/v2.0.1...v2.1.0) (2025-10-24)
+
+
+### Features
+
+* **config:** update configuration files for production and release workflow ([61a0a37](https://github.com/d-oit/hinode-mod-slideshow-gallery/commit/61a0a374fce5213ba883c60ffc3296492741f3dc))
+
 ## [2.0.1](https://github.com/d-oit/hinode-mod-slideshow-gallery/compare/v2.0.0...v2.0.1) (2025-10-24)
 
 
