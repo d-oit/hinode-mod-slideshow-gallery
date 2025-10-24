@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/d-oit/hinode-mod-slideshow-gallery/compare/v2.1.0...v2.2.0) (2025-10-24)
+
+
+### Features
+
+* update production config with baseURL, timeout, and canonifyAssetsURLs ([812e0dd](https://github.com/d-oit/hinode-mod-slideshow-gallery/commit/812e0dd0e353478e76adbb65455cbabbbb5f2fd2))
+
 # [2.1.0](https://github.com/d-oit/hinode-mod-slideshow-gallery/compare/v2.0.1...v2.1.0) (2025-10-24)
 
 
