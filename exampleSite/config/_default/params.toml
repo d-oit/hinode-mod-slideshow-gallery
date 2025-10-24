@@ -3,7 +3,7 @@
     description = "Hinode is a clean documentation and blog theme for your Hugo site based on Bootstrap 5."
     enableLanguageSelectionStorage = false
     
-    canonifyAssetsURLs = false
+    canonifyAssetsURLs = true
     endorse = true
     footerBelowFold = false
     loading = "lazy"
