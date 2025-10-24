@@ -1,4 +1,4 @@
-baseURL = "https://d-oit.github.io/hinode-mod-slideshow-gallery/"
+baseURL = "https://d-oit.github.io/"
 
 [params.main]
     canonifyAssetsURLs = true
