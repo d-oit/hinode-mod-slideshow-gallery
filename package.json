@@ -31,7 +31,7 @@
     "type": "git",
     "url": "git+https://github.com/d-oit/hinode-mod-slideshow-gallery.git"
   },
-  "author": "d.o. (module), Mark Dumay (Hinode)",
+  "author": "d.o. (mod), Mark Dumay (Hinode)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/d-oit/hinode-mod-slideshow-gallery/issues"
@@ -41,16 +41,18 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/npm": "^12.0.1",
     "commitizen": "^4.3.1",
     "cpy-cli": "^6.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "hugo-bin": "^0.148.0",
+    "hugo-bin": "^0.149.1",
     "husky": "^9.1.7",
-    "playwright": "^1.55.1",
+    "playwright": "^1.56.1",
     "rimraf": "^6.0.1",
-    "semantic-release": "^24.2.9"
+    "semantic-release": "^24.2.3"
   },
   "hugo-bin": {
     "buildTags": "extended"
@@ -89,7 +91,8 @@
     }
   },
   "dependencies": {
-    "@playwright/test": "^1.55.1",
+    "@playwright/test": "^1.56.1",
     "dotenv": "^17.2.3"
-  }
+  },
+  "packageManager": "pnpm@10.19.0+sha512.c9fc7236e92adf5c8af42fd5bf1612df99c2ceb62f27047032f4720b33f8eacdde311865e91c411f2774f618d82f320808ecb51718bfa82c060c4ba7c76a32b8"
 }
