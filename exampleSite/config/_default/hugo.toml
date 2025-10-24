@@ -8,11 +8,11 @@ timeout = "180s"
     dir = ':cacheDir/images'
 
 [module]
-  replacements = 'github.com/d-oit/mod-slideshow-gallery -> ../..'
+  replacements = 'github.com/d-oit/hinode-mod-slideshow-gallery -> ../..'
   # Build and serve using local mod-template clone declared in the named Hugo workspace:
-  workspace = "mod-slideshow-gallery.work"
+  workspace = "hinode-mod-slideshow-gallery.work"
   [[module.imports]]
-    path = "github.com/d-oit/mod-slideshow-gallery"
+    path = "github.com/d-oit/hinode-mod-slideshow-gallery"
   [[module.imports]]
     path = "github.com/gethinode/hinode"
   [[module.imports]]
