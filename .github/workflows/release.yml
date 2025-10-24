@@ -56,10 +56,22 @@ jobs:
         run: npm ci
 
       - name: Create release
+        id: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GIT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+
+      - name: Create GitHub release
+        if: steps.semantic-release.outputs.nextRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GIT }}
+        run: |
+          # Create GitHub release using gh CLI
+          gh release create ${{ steps.semantic-release.outputs.nextRelease.version }} \
+            --title "${{ steps.semantic-release.outputs.nextRelease.version }}" \
+            --notes "${{ steps.semantic-release.outputs.nextRelease.notes }}" \
+            --generate-notes
 
       - name: Notify success
         if: success()
