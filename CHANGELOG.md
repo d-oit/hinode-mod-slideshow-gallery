@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/d-oit/hinode-mod-slideshow-gallery/compare/v2.0.0...v2.0.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion ([#84](https://github.com/d-oit/hinode-mod-slideshow-gallery/issues/84)) ([06c3607](https://github.com/d-oit/hinode-mod-slideshow-gallery/commit/06c3607bee8e4fe6cfabd98eec4ffa03bb2606cb))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
