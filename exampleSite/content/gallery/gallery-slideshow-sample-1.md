@@ -5,7 +5,7 @@ title: "Slideshow Gallery Sample 1"
 description: "Slideshow Gallery Sample 1"
 slug: "slideshow-gallery-sample-1"
 thumbnail:
-  url: /img/coffee.jpg
+  url: /img/coffee1.jpg
 
 resources:
   - src: "img/coffee.jpg"

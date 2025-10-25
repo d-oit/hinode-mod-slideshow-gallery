@@ -16,8 +16,9 @@
         {{ if eq $index 0 }}
           {{ $loading = "eager" }}
         {{ end }}
-        {{- with resources.Get $image.src -}}
-          {{ $imageUrl := .RelPermalink }}
+        {{- $imgResult := partial "utilities/GetImage.html" (dict "url" $image.src "page" $.Page) -}}
+        {{- with $imgResult -}}
+          {{ $imageUrl := $imgResult.resource.RelPermalink }}
           {{ $title := $image.title }}
           {{ $description := $image.params.description }}
           {{ if $description }}
@@ -48,8 +49,9 @@
       {{ if eq $index 0 }}
         {{ $loading = "eager" }}
       {{ end }}
-      {{- with resources.Get $image.src -}}
-        {{ $imageUrl := .RelPermalink }}
+      {{- $imgResult := partial "utilities/GetImage.html" (dict "url" $image.src "page" $.Page) -}}
+      {{- with $imgResult -}}
+        {{ $imageUrl := $imgResult.resource.RelPermalink }}
         {{ $title := $image.title }}
         {{ $imageClass := "slideshow-thumbnail-image cursor" }}
         <div class="slideshow-thumbnail-column">
