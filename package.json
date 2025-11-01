@@ -52,7 +52,7 @@
     "husky": "^9.1.7",
     "playwright": "^1.56.1",
     "rimraf": "^6.0.1",
-    "semantic-release": "^24.2.3"
+    "semantic-release": "^25.0.1"
   },
   "hugo-bin": {
     "buildTags": "extended"
